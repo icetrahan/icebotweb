@@ -35,8 +35,7 @@ Map statsContent = {};
 Map warnsContent = {};
 List userAllowedServers = [];
 List userBotAllowedServers = [];
-String discordBotAuth =
-    "Bot OTYxNjQ1MzQ5OTAxMDU4MDU5.GXJrVa.DVB0lk-Gi92OU6li2oUUySimit0Pab5ddOpm-M";
+String discordBotAuth = "Bot TOKEN";
 
 Map selectedGuild = {};
 
@@ -67,7 +66,7 @@ GoRouter router = GoRouter(
       builder: (context, state) => const Login(),
     ),
     GoRoute(
-      path: '/Login/Process_Oauth',
+      path: '/Process_Oauth',
       builder: (context, state) => const Oauth(),
     ),
     GoRoute(
@@ -160,7 +159,7 @@ Future<void> testOauth(String code) async {
       "client_id": "961645349901058059",
       "client_secret": "-N29GThZHwQm0y6zrTc3D4jgPvjferOo",
       'grant_type': 'authorization_code',
-      "redirect_uri": "http://icebot.xyz/Login/Process_Oauth",
+      "redirect_uri": "http://icebot.xyz/Process_Oauth",
     },
   );
   Map response = json.decode(uriResponse.body);
@@ -211,8 +210,7 @@ Future<void> getUserGuilds() async {
   var url2 = 'https://discord.com/api/v10/users/@me/guilds';
   var uriResponse2 = await client2.get(Uri.parse(url2), headers: {
     'User-Agent': 'Dart/2.19.2',
-    'Authorization':
-        "Bot OTYxNjQ1MzQ5OTAxMDU4MDU5.GXJrVa.DVB0lk-Gi92OU6li2oUUySimit0Pab5ddOpm-M",
+    'Authorization': "Bot TOKEN",
   });
 
   var response2 = json.decode(uriResponse2.body);
@@ -249,8 +247,7 @@ Future<void> getGuildRoles(String guildid) async {
   var uriResponse2 = await client2.get(Uri.parse(url2), headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
     'User-Agent': 'Dart/2.19.2',
-    'Authorization':
-        "Bot OTYxNjQ1MzQ5OTAxMDU4MDU5.GXJrVa.DVB0lk-Gi92OU6li2oUUySimit0Pab5ddOpm-M",
+    'Authorization': "Bot TOKEN",
   });
   print(uriResponse2.body);
 }
