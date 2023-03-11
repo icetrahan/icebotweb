@@ -82,7 +82,7 @@ class _LoginState extends State<Login> {
                     TextButton(
                       onPressed: () async {
                         html.window.open(
-                            "https://discord.com/api/oauth2/authorize?client_id=961645349901058059&redirect_uri=http%3A%2F%2Ficebot.xyz%2FLogin%2FProcess_Oauth&response_type=code&scope=guilds%20identify",
+                            "https://discord.com/api/oauth2/authorize?client_id=961645349901058059&redirect_uri=http%3A%2F%2Ficebot.xyz%2FProcess_Oauth&response_type=code&scope=identify%20guilds",
                             "_top");
                       },
                       child: Container(
