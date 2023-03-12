@@ -29,7 +29,6 @@ String discAccessTokenType = '';
 Map getUserResponse = {};
 List getUserGuildsResponse = [];
 List guildRoles = [];
-List guildRoleNames = [];
 bool userResponse = false;
 Map statsContent = {};
 Map warnsContent = {};
@@ -222,8 +221,12 @@ Future<void> getGuildRoles(String guildid) async {
   var url2 = 'http://localhost:3000/api/guilds/${guildid}/roles;
 
   var uriResponse2 = await client2.get(Uri.parse(url2));
+
+  var response= json.decode(uriResponse2.body);
   
-  
+  for (role in response){
+    guildRoles.add({'name':role['name'],'id':role['id']})
+  }
 }
 
 double width = 1920;
@@ -240,14 +243,11 @@ Map dashboardItems = {};
 
 
 // Future<void> getUser() async {
-//   var url = 'https://discord.com/api/v10/users/@me';
+//   var url = 'https://localhost:3000/api/users/@bot';
 
 //   var client = new http.Client();
 
-//   var uriResponse = await client.get(Uri.parse(url), headers: {
-//     'Authorization':
-//         'Bot 8XJrVUUySimit0Pab5ddOpm-M',
-//   });
+//   var uriResponse = await client.get(Uri.parse(url));
 //   Map response = json.decode(uriResponse.body);
 
 //   print("########GetUser Response:" + uriResponse.body);
