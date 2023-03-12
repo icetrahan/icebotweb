@@ -144,24 +144,13 @@ Future<void> loadConfigScreen(String guildId) async {
 // }
 
 Future<void> testOauth(String code) async {
-  var url = 'https://discord.com/api/v10/oauth2/token';
+  var url = 'http://localhost:3000/api/oauth2/token/${code}';
 
   var client = new http.Client();
 
-  print("Code: " + code);
-
   var uriResponse = await client.post(
     Uri.parse(url),
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: {
-      "scope": "identify%20guilds",
-      "code": code,
-      "client_id": "961645349901058059",
-      "client_secret": "-N29GThZHwQm0y6zrTc3D4jgPvjferOo",
-      'grant_type': 'authorization_code',
-      "redirect_uri": "http://icebot.xyz/Process_Oauth",
-    },
-  );
+);
   Map response = json.decode(uriResponse.body);
 
   print(response);
@@ -173,16 +162,11 @@ Future<void> testOauth(String code) async {
 }
 
 Future<void> getUser() async {
-  var url = 'https://discord.com/api/v10/users/@me';
+  var url = 'http://localhost:3000/api/users/@me/${discAccessTokenType}/${discAccessToken}';
 
   var client = http.Client();
 
-  var uriResponse = await client.get(Uri.parse(url), headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'User-Agent': 'Dart/2.19.2',
-    'Authorization': '$discAccessTokenType $discAccessToken',
-    'Connection': 'keep-alive',
-  });
+  var uriResponse = await client.get(Uri.parse(url));
   Map response = json.decode(uriResponse.body);
 
   getUserResponse = response;
@@ -193,25 +177,18 @@ Future<void> getUser() async {
 }
 
 Future<void> getUserGuilds() async {
-  var url = 'https://discord.com/api/v10/users/@me/guilds';
+  var url = http://localhost:3000/api/users/@me/${discAccessTokenType}/${discAccessToken};
 
   var client = http.Client();
 
-  var uriResponse = await client.get(Uri.parse(url), headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'User-Agent': 'Dart/2.19.2',
-    'Authorization': '$discAccessTokenType $discAccessToken',
-  });
+  var uriResponse = await client.get(Uri.parse(url));
   var response = json.decode(uriResponse.body);
 
   getUserGuildsResponse = response;
 
   var client2 = http.Client();
-  var url2 = 'https://discord.com/api/v10/users/@me/guilds';
-  var uriResponse2 = await client2.get(Uri.parse(url2), headers: {
-    'User-Agent': 'Dart/2.19.2',
-    'Authorization': "Bot TOKEN",
-  });
+  var url2 = 'http://localhost:3000/api/users/@bot/guilds';
+  var uriResponse2 = await client2.get(Uri.parse(url2));
 
   var response2 = json.decode(uriResponse2.body);
 
@@ -242,14 +219,11 @@ Future<void> getUserGuilds() async {
 
 Future<void> getGuildRoles(String guildid) async {
   var client2 = http.Client();
-  var url2 = 'https://discord.com/api/v10/guilds/' + guildid + "/roles";
+  var url2 = 'http://localhost:3000/api/guilds/${guildid}/roles;
 
-  var uriResponse2 = await client2.get(Uri.parse(url2), headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'User-Agent': 'Dart/2.19.2',
-    'Authorization': "Bot TOKEN",
-  });
-  print(uriResponse2.body);
+  var uriResponse2 = await client2.get(Uri.parse(url2));
+  
+  
 }
 
 double width = 1920;
@@ -272,7 +246,7 @@ Map dashboardItems = {};
 
 //   var uriResponse = await client.get(Uri.parse(url), headers: {
 //     'Authorization':
-//         'Bot OTYxNjQ1MzQ5OTAxMDU4MDU5.GXJrVa.DVB0lk-Gi92OU6li2oUUySimit0Pab5ddOpm-M',
+//         'Bot 8XJrVUUySimit0Pab5ddOpm-M',
 //   });
 //   Map response = json.decode(uriResponse.body);
 
